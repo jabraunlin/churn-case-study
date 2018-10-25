@@ -2,7 +2,7 @@
 Predicting churn from a ride share company's user data
 
 
-pipeline_.py: file containing pipeline object with transformation methods
+pipeline_.py: file containing pipeline object with fit and transformation methods (for both data preparation and modeling).
 
 implementation.ipynb: notebook containing data loading, cleaning, transformation, and results
 
@@ -15,7 +15,7 @@ The goal of the case study was to create a model that would accurately classify 
 
 I hypothesized that churn would have a strong relationship with average surge pricing riders were being charged and average driver ratings. This relationship is graphed at the bottom of implementation.ipynb. Yellow dots, siginfying users who churned, were definitely being charged more on average than those who didn't. However, a strange relationship was observed where large amounts of users who churned were stacked at average user ratings of 1.0, 2.0, 3.0, 4.0, and 5.0. 
 
-There was no data provided for how many rides each of these users took in total, but we can infer from the data with high confidence who was likely only a one-time user. To do this, I used the following condition. If a user had an average rating that was a whole number, took one or less ride in the first 30 days, their weekday ride percentage was either 100% or 0%, and their average surge percent was a round number, they were identified as most likely a "One time user". A dummy column was created to identify these users. Churn rate was considerably higher among this subset.
+There was no data provided for how many rides each of these users took in total, but we can infer from the data with high confidence who was likely only a one-time user. To do this, I used the following condition. If a user had an average rating that was a whole number (i.e. 1.0, 2.0, 3.0, 4.0, and 5.0.), took one or less ride in the first 30 days, their weekday ride percentage was either 100% or 0%, and their average surge percent was a round number, they were identified as most likely a "One time user". A dummy column was created to identify these users. Churn rate was considerably higher among this subset, and the addition of this column significantly improved cross validation scores. 
 
 Categorical values were dummified, and missing values were either dropped or imputed. 
 
